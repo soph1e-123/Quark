@@ -97,7 +97,7 @@ class Level():
 
         
     def display(self, window, screen_size):
-        window.fill((237,200,178))
+        window.fill((41,18,64))
         #display copy but translucent
 
         if self.__panels[1] is not None:
@@ -138,7 +138,9 @@ class Level():
             for button in self.__buttons[0]:
                 button.draw(self.__panels[0])
             self.__player[0].draw(self.__panels[0])
-            window.blit(self.__panels[0], (0, screen_size[1]/4))    
+            window.blit(self.__panels[0], (0, screen_size[1]/4))
+            pygame.draw.line(window, (255,255,255), (0,screen_size[1]/4), (screen_size[0], screen_size[1]/4), 5)
+            pygame.draw.line(window, (255,255,255), (0,3*screen_size[1]/4), (screen_size[0], 3*screen_size[1]/4), 5)   
 
     def checkCollisions(self, current_panel):
         
