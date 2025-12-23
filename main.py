@@ -1,5 +1,5 @@
 import pygame
-from levels import setup_level1, setup_level2, setup_level3, setup_level4
+from levels import setup_level1, setup_level2, setup_level3, setup_level4, setup_level5
 
 def move_player(player):
     pressed = pygame.key.get_pressed()
@@ -81,7 +81,7 @@ current_panel = 0
 
 #level_panels = [[panel1, copy(levels[0])], [panel2, copy(levels[0])]]
 
-setups = [setup_level4, setup_level2, setup_level3]
+setups = [setup_level5, setup_level2, setup_level3]
 
 current_panel = 0
 level = setups[0](screen_size, panel_size, BACKGROUND)
