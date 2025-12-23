@@ -1,6 +1,6 @@
 from object_class import Object
 from useful import sameHeight, findOverlap
-import pygame
+import pygame.image, pygame.transform
 
 class Button(Object):
     def __init__(self, x, y, screen_size):

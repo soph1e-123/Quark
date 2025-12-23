@@ -223,6 +223,40 @@ def setup_level6(screen_size, panel_size, BACKGROUND):
     #return all objects that are part of a level
     return level
 
+def setup_level7(screen_size, panel_size, BACKGROUND):
+    #set up panel
+    panel1 = Surface(panel_size)
+    #set up player objects
+    player1 = Player(0, screen_size[1], panel_size)
+    #20 tiles on the screen
+    tile_size = player1.getSize()[0]
+
+    #set up objects in first panel
+
+    button1 = Button(tile_size, panel_size[1]-tile_size*3, panel_size)
+    button2 = Button(tile_size*18, panel_size[1]-tile_size*3, panel_size)
+
+    spike1 = Spike(tile_size*2, panel_size[1], panel_size)
+    bounce1 = Bounce(tile_size*3.2, panel_size[1], panel_size)
+    spike2 = Spike(tile_size*4.4, panel_size[1], panel_size)
+    bounce2 = Bounce(tile_size*5.6, panel_size[1], panel_size)
+    spike3 = Spike(tile_size*6.8, panel_size[1], panel_size)
+    bounce3 = Bounce(tile_size*0.8, panel_size[1], panel_size)
+
+    door = Door(tile_size*2, panel_size[1], panel_size)
+
+
+    current_objects = [spike1, spike2, spike3, bounce1, bounce2, bounce3]
+
+    objects = [[],[]]
+    for item in current_objects:
+        objects[0].append(copy(item))
+        objects[1].append(copy(item))
+
+    level = Level(player1, objects[0], panel1, [button1, button2], [], door, BACKGROUND)
+    #return all objects that are part of a level
+    return level
+
 def test_level(screen_size, panel_size, BACKGROUND):
     #set up player objects
     player1 = Player(200, screen_size[1], panel_size)

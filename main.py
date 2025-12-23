@@ -1,5 +1,5 @@
 import pygame
-from levels import setup_level1, setup_level2, setup_level3, setup_level4, setup_level5, setup_level6
+from levels import setup_level1, setup_level2, setup_level3, setup_level4, setup_level5, setup_level6, setup_level7
 
 def move_player(player):
     pressed = pygame.key.get_pressed()
@@ -55,6 +55,29 @@ def next_level_text(window, screen_size):
     text_rect = text.get_rect(center=(screen_size[0]/2, screen_size[1]/2))
     window.blit(text, text_rect)
 
+
+def start_screen(window, screen_size):
+    running = True
+    #home_screen = pygame.image.load("assets/start.png")
+    #home_screen = pygame.transform.scale(home_screen, (screen_size[0], screen_size[1]))
+    while running:
+        #window.blit(home_screen, (0,0))
+        window.fill((255,200,255))
+        pygame.display.flip()
+        pressed = pygame.key.get_pressed()
+
+        if pressed[pygame.K_RETURN]:
+            return True
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+        
+        if pygame.key.get_pressed()[pygame.K_ESCAPE]:
+            running = False
+
+    return running
+
 #main program
 
 #initialise for the entire game
@@ -85,7 +108,7 @@ current_panel = 0
 
 #level_panels = [[panel1, copy(levels[0])], [panel2, copy(levels[0])]]
 
-setups = [setup_level2, setup_level5, setup_level2, setup_level3]
+setups = [setup_level7, setup_level5, setup_level2, setup_level3]
 
 current_panel = 0
 level = setups[0](screen_size, panel_size, BACKGROUND)
@@ -93,6 +116,8 @@ level.make_copy()
 level_index = 0
 
 win_frame = 0
+
+running = start_screen(window, screen_size)
 
 while running:
     clock.tick(50)
@@ -141,5 +166,6 @@ while running:
 #TODO: optimise in general (improve frame rate etc)
 #TODO: sort out global variables and parameters
 #TODO: all buttons pressed -> door opens -> merge and enter door to move to next level
-#TODO: keep a copy to merge back to before - mainly done, just show ghostly image
 #TODO: boxes on platforms????
+#TODO: sound effects?
+#TODO: main menu/level select
