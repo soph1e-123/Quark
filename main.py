@@ -1,11 +1,5 @@
 import pygame
-from player import Player
-from box import Box, Platform, Door
-from button import Button, Bounce
-from obstacle import Spike
-from portal import Portal
-from copy import copy
-from level_class import Level
+from levels import setup_level1, setup_level2, setup_level3
 
 def move_player(player):
     pressed = pygame.key.get_pressed()
@@ -53,7 +47,6 @@ def switch_panels(current_panel, level):
     return current_panel, level
 
 
-
 def display_level_num(window, level_index):
     text = FONT.render(str(level_index+1), False, (255,255,255))
     window.blit(text, (20,20))
@@ -75,10 +68,6 @@ screen_size = (info.current_h*1.6, info.current_h*0.8)
 panel_size = (screen_size[0], screen_size[1]/2)
 window = pygame.display.set_mode(screen_size, pygame.NOFRAME)
 
-panel1 = pygame.Surface(panel_size)
-panel1.fill((41,18,64))
-panel2 = pygame.Surface(panel_size)
-panel2.fill((41,18,64))
 
 BACKGROUND = pygame.image.load("assets/background.png")
 BACKGROUND = pygame.transform.scale(BACKGROUND, panel_size)
@@ -95,7 +84,7 @@ current_panel = 0
 setups = [setup_level2, setup_level3]
 
 current_panel = 0
-level = setups[0](window)
+level = setups[0](screen_size, panel_size, BACKGROUND)
 level.make_copy()
 level_index = 0
 

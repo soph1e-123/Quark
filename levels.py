@@ -1,5 +1,15 @@
+from player import Player
+from box import Box, Platform, Door
+from button import Button, Bounce
+from obstacle import Spike
+from portal import Portal
+from copy import copy
+from level_class import Level
+from pygame import Surface
 
-def setup_level1(window):
+def setup_level1(screen_size, panel_size, BACKGROUND):
+    #set up panel
+    panel1 = Surface(panel_size)
     #set up player objects
     player1 = Player(screen_size[0]/2, screen_size[1], panel_size)
     #20 tiles on the screen
@@ -25,7 +35,8 @@ def setup_level1(window):
     #return all objects that are part of a level
     return level
 
-def setup_level2(window):
+def setup_level2(screen_size, panel_size, BACKGROUND):
+    panel1 = Surface(panel_size)
     #set up player objects
     player1 = Player(screen_size[0]*0.02, screen_size[1], panel_size)
     #20 tiles on the screen
@@ -53,7 +64,8 @@ def setup_level2(window):
     #return all objects that are part of a level
     return level
 
-def setup_level3(window):
+def setup_level3(screen_size, panel_size, BACKGROUND):
+    panel1 = Surface(panel_size)
     #set up player objects
     player1 = Player(screen_size[0]*0.45, screen_size[1], panel_size)
     #20 tiles on the screen
@@ -94,7 +106,7 @@ def setup_level3(window):
     return level
 
 
-def test_level(window):
+def test_level(screen_size, panel_size, BACKGROUND):
     #set up player objects
     player1 = Player(200, screen_size[1], panel_size)
     player2 = Player(200, screen_size[1], panel_size)
