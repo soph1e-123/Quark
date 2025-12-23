@@ -26,6 +26,12 @@ class Level():
     def getDoor(self):
         return self.__door
 
+    def getBoxes(self, index):
+        return self.__boxes[index]
+    
+    def getButtons(self, index):
+        return self.__buttons[index]
+
     def setDoor(self, val):
         self.__door = val
 
@@ -78,13 +84,31 @@ class Level():
 
     def get_copy(self):
         return self.__copy
+    
+    def displayCopy(self):
+        #only display the things that can move or change state
+        for box in self.__copy.getBoxes(0):
+            box.draw(self.__panels[0], opaque=False)
+
+        for button in self.__copy.getButtons(0):
+            button.draw(self.__panels[0], opaque=False)
+
+        self.__copy.getPlayer(0).draw(self.__panels[0], opaque=False)
+
         
     def display(self, window, screen_size):
         window.fill((237,200,178))
+        #display copy but translucent
+
 
         if self.__panels[1] is not None:
+            self.__panels[0].blit(self.__background, (0,0))
+            self.__panels[1].blit(self.__background, (0,0))
+            
+            if self.__copy is not None:
+                self.displayCopy()
+
             for i in range(0,2):
-                self.__panels[i].blit(self.__background, (0,0))
                 self.__door.draw(self.__panels[i])
 
                 objects = self.__objects[i]

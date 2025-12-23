@@ -21,8 +21,13 @@ class Object:
     def setSize(self, new):
         self.__size = new
     
-    def draw(self, window):
-        window.blit(self.__image, self.__position)
+    def draw(self, window, opaque=True):
+        if opaque:
+            window.blit(self.__image, self.__position)
+        else:
+            image = self.__image.copy()
+            image.set_alpha(100)
+            window.blit(image, self.__position)
     
     def leftRightBounds(self):
         self.__position[0] = (self.__position[0]+self.getSize()[0])%(self.__screen_size[0]+self.getSize()[0])-self.getSize()[0]

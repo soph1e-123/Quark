@@ -68,7 +68,7 @@ class Player(Object):
         self.__current_velocity[1] = -height*self.__speed
 
 
-    def draw(self, window):
+    def draw(self, window, opaque=True):
 
         if self.__current_velocity[0] < 0:
             #left
@@ -84,7 +84,10 @@ class Player(Object):
         else:
             frame = self.__frame//20
 
-        image = self.__images[direction][frame]
+        image = self.__images[direction][frame].copy()
+        if not opaque:
+            image.set_alpha(100)
+            
         window.blit(image, self.getPosition())
 
     def animate(self):
