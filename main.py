@@ -30,7 +30,6 @@ def switch_panels(current_panel, level):
     
     elif pressed[pygame.K_BACKSPACE]:
         level.split()
-        current_panel = 1
     
     elif pressed[pygame.K_r]:
         level = setups[level_index](screen_size, panel_size, BACKGROUND)
@@ -48,8 +47,13 @@ def switch_panels(current_panel, level):
 
 
 def display_level_num(window, level_index):
-    text = FONT.render(str(level_index+1), False, (255,255,255))
+    text = FONT.render(str(level_index+1), False, (255,181,201))
     window.blit(text, (20,20))
+
+def next_level_text(window, screen_size):
+    text = FONT.render("LEVEL COMPLETED!", False, (255,181,201))
+    text_rect = text.get_rect(center=(screen_size[0]/2, screen_size[1]/2))
+    window.blit(text, text_rect)
 
 #main program
 
@@ -81,12 +85,14 @@ current_panel = 0
 
 #level_panels = [[panel1, copy(levels[0])], [panel2, copy(levels[0])]]
 
-setups = [setup_level5, setup_level5, setup_level2, setup_level3]
+setups = [setup_level2, setup_level5, setup_level2, setup_level3]
 
 current_panel = 0
 level = setups[0](screen_size, panel_size, BACKGROUND)
 level.make_copy()
 level_index = 0
+
+win_frame = 0
 
 while running:
     clock.tick(50)
@@ -98,9 +104,16 @@ while running:
 
     if level.allPressed():
         level.getDoor().open()
+    
+    level.display(window, screen_size)
+    display_level_num(window, level_index)
 
     if player.getWon():
-        #TODO: winning animation
+        win_frame += 1
+        next_level_text(window, screen_size)
+    
+    if win_frame > 100:
+        win_frame = 0
         level.merge()
         level_index += 1
         current_panel = 0
@@ -112,8 +125,6 @@ while running:
             #TODO: won whole game
             print("you win")
 
-    level.display(window, screen_size)
-    display_level_num(window, level_index)
     pygame.display.flip()
 
     for event in pygame.event.get():

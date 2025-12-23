@@ -89,11 +89,14 @@ class Level():
         #only display the things that can move or change state
         for box in self.__copy.getBoxes(0):
             box.draw(self.__panels[0], opaque=False)
+            box.draw(self.__panels[1], opaque=False)
 
         for button in self.__copy.getButtons(0):
             button.draw(self.__panels[0], opaque=False)
+            button.draw(self.__panels[1], opaque=False)
 
         self.__copy.getPlayer(0).draw(self.__panels[0], opaque=False)
+        self.__copy.getPlayer(0).draw(self.__panels[1], opaque=False)
 
         
     def display(self, window, screen_size):
