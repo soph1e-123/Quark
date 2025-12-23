@@ -100,13 +100,12 @@ class Level():
         window.fill((237,200,178))
         #display copy but translucent
 
-
         if self.__panels[1] is not None:
             self.__panels[0].blit(self.__background, (0,0))
             self.__panels[1].blit(self.__background, (0,0))
             
             if self.__copy is not None:
-                self.displayCopy()
+               self.displayCopy()
 
             for i in range(0,2):
                 self.__door.draw(self.__panels[i])

@@ -219,7 +219,7 @@ level.make_copy()
 level_index = 0
 
 while running:
-    clock.tick(60)
+    clock.tick(50)
     current_panel, level = switch_panels(current_panel, level)
     player = level.getPlayer(current_panel)
     player.animate()

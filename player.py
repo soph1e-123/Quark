@@ -84,10 +84,11 @@ class Player(Object):
         else:
             frame = self.__frame//20
 
-        image = self.__images[direction][frame].copy()
+        image = self.__images[direction][frame]
         if not opaque:
+            image = image.copy()
             image.set_alpha(100)
-            
+
         window.blit(image, self.getPosition())
 
     def animate(self):

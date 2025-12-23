@@ -26,11 +26,12 @@ class Button(Object):
 
     def draw(self, window, opaque=True):
         if self.__pressed:
-            image = self.__pressed_img.copy()
+            image = self.__pressed_img
         else:
-            image = self.__unpressed_img.copy()
+            image = self.__unpressed_img
         
         if not opaque:
+            image = image.copy()
             image.set_alpha(100)
         
         window.blit(image, self.getPosition())
@@ -58,11 +59,8 @@ class Bounce(Object):
 
     def draw(self, window, opaque=True):
         if self.__pressed:
-            image = self.__pressed_img.copy()
+            image = self.__pressed_img
         else:
-            image = self.__unpressed_img.copy()
-        
-        if not opaque:
-            image.set_alpha(100)
-        
+            image = self.__unpressed_img
+
         window.blit(image, self.getPosition())
