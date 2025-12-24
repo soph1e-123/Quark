@@ -31,7 +31,6 @@ class Object:
     
     def leftRightBounds(self):
         self.__position[0] = (self.__position[0]+self.getSize()[0])%(self.__screen_size[0]+self.getSize()[0])-self.getSize()[0]
-
         """if self.getPosition()[0]+0.5*self.__size[0] < 0:
             self.__position[0] = self.__screen_size[0]+self.getPosition()[0]
         

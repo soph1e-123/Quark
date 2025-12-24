@@ -10,6 +10,7 @@ class Box(Object):
         return [0,0]
     
     def collide(self, player):
+        self.leftRightBounds()
         obj = self
         y_overlap = overlap = findOverlap(player.getPosition()[1],player.getPosition()[1]+player.getSize()[1],obj.getPosition()[1],obj.getPosition()[1]+obj.getSize()[1])
         if y_overlap > 0 and y_overlap < 0.5*player.getSize()[1]:
@@ -35,8 +36,14 @@ class Box(Object):
 
             if  player.getPosition()[0] - self.getSize()[0] <= self.getPosition()[0] and player.getVelocity()[0] <= 0 and player.getPosition()[0] >= self.getPosition()[0]:
                 self.setPosition([player.getPosition()[0] - self.getSize()[0], self.getPosition()[1]])
-        
-        self.leftRightBounds()
+            
+            #TODO: deal with edges of screen
+
+            if player.getPosition()[0] < 0 and self.getPosition()[0]<0 and player.getVelocity()[0] >= 0:
+                self.setPosition([player.getSize()[0] + player.getPosition()[0], self.getPosition()[1]])
+
+    
+
 
 class Platform(Object):
     def __init__(self, x, y, screen_size, ratio):
