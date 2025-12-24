@@ -28,7 +28,7 @@ def switch_panels(current_panel, level):
         level.make_copy()
         current_panel = 0
     
-    elif pressed[pygame.K_BACKSPACE]:
+    elif pressed[pygame.K_TAB]:
         level.split()
     
     elif pressed[pygame.K_r]:
@@ -36,10 +36,10 @@ def switch_panels(current_panel, level):
         level.make_copy()
         current_panel = 0
 
-    if pressed[pygame.K_1]:
+    if pressed[pygame.K_UP]:
         current_panel = 0
 
-    elif pressed[pygame.K_2] and level.getPanel(1) is not None:
+    elif pressed[pygame.K_DOWN] and level.getPanel(1) is not None:
         current_panel = 1
     
     
@@ -131,7 +131,7 @@ current_panel = 0
 
 tutorial_screens = []
 
-for i in range(1,4):
+for i in range(0,6):
     screen = pygame.image.load("assets/tutorial" + str(i)+ ".png")
     screen = pygame.transform.scale(screen, screen_size)
     tutorial_screens.append(screen)
@@ -142,7 +142,7 @@ for i in range(1,4):
 
 #level_panels = [[panel1, copy(levels[0])], [panel2, copy(levels[0])]]
 
-setups = [setup_level7, setup_level5, setup_level2, setup_level3]
+setups = [setup_level1, setup_level2, setup_level3, setup_level4, setup_level5, setup_level6, setup_level7]
 
 current_panel = 0
 level = setups[0](screen_size, panel_size, BACKGROUND)

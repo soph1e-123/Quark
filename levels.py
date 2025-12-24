@@ -245,7 +245,6 @@ def setup_level7(screen_size, panel_size, BACKGROUND):
 
     door = Door(tile_size*2, panel_size[1], panel_size)
 
-
     current_objects = [spike1, spike2, spike3, bounce1, bounce2, bounce3]
 
     objects = [[],[]]
@@ -254,35 +253,5 @@ def setup_level7(screen_size, panel_size, BACKGROUND):
         objects[1].append(copy(item))
 
     level = Level(player1, objects[0], panel1, [button1, button2], [], door, BACKGROUND)
-    #return all objects that are part of a level
-    return level
-
-def test_level(screen_size, panel_size, BACKGROUND):
-    #set up player objects
-    player1 = Player(200, screen_size[1], panel_size)
-    player2 = Player(200, screen_size[1], panel_size)
-
-    #set up objects in first panel
-
-    box = Box(400, panel_size[1], panel_size)
-
-    #portal2 = Portal(600, panel_size[1], panel_size)
-    #portal3 = Portal(200, panel_size[1], panel_size)
-
-    #portal2.connect(portal3.getPosition())
-    #portal3.connect(portal2.getPosition())
-
-    button = Button(500, panel_size[1], panel_size)
-    platform = Platform(400, panel_size[1]-100, panel_size, 3)
-    spike = Spike(800, panel_size[1], panel_size)
-    door = Door(100, panel_size[1], panel_size)
-    current_objects = [platform, spike, door]
-
-    objects = [[],[]]
-    for item in current_objects:
-        objects[0].append(copy(item))
-        objects[1].append(copy(item))
-
-    level = Level(player1, objects[0], panel1, [button], [box], door, BACKGROUND)
     #return all objects that are part of a level
     return level
