@@ -58,11 +58,10 @@ def next_level_text(window, screen_size):
 
 def start_screen(window, screen_size):
     running = True
-    #home_screen = pygame.image.load("assets/start.png")
-    #home_screen = pygame.transform.scale(home_screen, (screen_size[0], screen_size[1]))
+    home_screen = pygame.image.load("assets/start_screen.png")
+    home_screen = pygame.transform.scale(home_screen, screen_size)
     while running:
-        #window.blit(home_screen, (0,0))
-        window.fill((255,200,255))
+        window.blit(home_screen, (0,0))
         pygame.display.flip()
         pressed = pygame.key.get_pressed()
 
@@ -72,6 +71,34 @@ def start_screen(window, screen_size):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
+        
+        if pygame.key.get_pressed()[pygame.K_ESCAPE]:
+            running = False
+
+    return running
+
+
+def tutorial(window, screen_size):
+    running = True
+    tutorial_index = 0
+    #home_screen = pygame.image.load("assets/start.png")
+    #home_screen = pygame.transform.scale(home_screen, screen_size[0], screen_size[1]))
+    while running:
+        window.blit(tutorial_screens[tutorial_index], (0,0))
+        pygame.display.flip()
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_LEFT:
+                    tutorial_index -= 1
+                    if tutorial_index < 0:
+                        tutorial_index = 0
+                elif event.key == pygame.K_RIGHT:
+                    tutorial_index += 1
+                    if tutorial_index >= len(tutorial_screens):
+                        return True
         
         if pygame.key.get_pressed()[pygame.K_ESCAPE]:
             running = False
@@ -102,6 +129,13 @@ FONT = pygame.font.SysFont("verdana", int(screen_size[0]/20), bold=True)
 
 current_panel = 0
 
+tutorial_screens = []
+
+for i in range(1,4):
+    screen = pygame.image.load("assets/tutorial" + str(i)+ ".png")
+    screen = pygame.transform.scale(screen, screen_size)
+    tutorial_screens.append(screen)
+
 #--------------
 
 #run this for each new level
@@ -118,6 +152,9 @@ level_index = 0
 win_frame = 0
 
 running = start_screen(window, screen_size)
+
+if running:
+    running = tutorial(window, screen_size)
 
 while running:
     clock.tick(50)
