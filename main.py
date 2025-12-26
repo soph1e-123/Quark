@@ -142,7 +142,7 @@ for i in range(0,6):
 
 #level_panels = [[panel1, copy(levels[0])], [panel2, copy(levels[0])]]
 
-setups = [setup_level9, setup_level9, setup_level1, setup_level2, setup_level3, setup_level4, setup_level5, setup_level6, setup_level7]
+setups = [setup_level11, setup_level9, setup_level1, setup_level2, setup_level3, setup_level4, setup_level5, setup_level6, setup_level7]
 
 current_panel = 0
 level = setups[0](screen_size, panel_size, BACKGROUND)

@@ -7,7 +7,7 @@ from useful import sameHeight, findOverlap
 class Player(Object):
     def __init__(self, x, y, screen_size):
         super().__init__(x,y,screen_size, "player")
-        self.__start_pos = [x,y].copy()
+        self.__start_pos = self.getPosition().copy()
         self.__speed = screen_size[0]/700
         self.__current_velocity = [0,0].copy()
         self.__is_jumping = False
