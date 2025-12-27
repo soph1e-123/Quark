@@ -142,7 +142,7 @@ for i in range(0,6):
 
 #level_panels = [[panel1, copy(levels[0])], [panel2, copy(levels[0])]]
 
-setups = [setup_level13, setup_level9, setup_level1, setup_level2, setup_level3, setup_level4, setup_level5, setup_level6, setup_level7]
+setups = [setup_level14, setup_level9, setup_level1, setup_level2, setup_level3, setup_level4, setup_level5, setup_level6, setup_level7]
 
 current_panel = 0
 level = setups[0](screen_size, panel_size, BACKGROUND)
@@ -156,26 +156,34 @@ running = start_screen(window, screen_size)
 #if running:
     #running = tutorial(window, screen_size)
 
+won = False
+
 while running:
     clock.tick(50)
-    current_panel, level = switch_panels(current_panel, level)
+    if not won:
+        current_panel, level = switch_panels(current_panel, level)
     player = level.getPlayer(current_panel)
     player.animate()
-    move_player(player)
-    level.checkCollisions(current_panel)
 
-    if level.allPressed():
-        level.getDoor().open()
-    
-    level.display(window, screen_size)
-    display_level_num(window, level_index)
+    if not won:
+        move_player(player)
+        level.checkCollisions(current_panel)
+
+        if level.allPressed():
+            level.getDoor().open()
+        
+        level.display(window, screen_size)
+        display_level_num(window, level_index)
 
     if player.getWon():
+        won = True
+        player.animate()
         win_frame += 1
         next_level_text(window, screen_size)
     
     if win_frame > 100:
         win_frame = 0
+        won = False
         level.merge()
         level_index += 1
         current_panel = 0
@@ -198,13 +206,8 @@ while running:
 
 
 #TODO: quack
-#TODO: merge time, split time, pause time etc
 #TODO: sort out imports
 #TODO: optimise in general (improve frame rate etc)
-#TODO: sort out global variables and parameters
-#TODO: all buttons pressed -> door opens -> merge and enter door to move to next level
-#TODO: boxes on platforms????
 #TODO: sound effects?
 #TODO: main menu/level select
-#TODO: fix box sliding around screen
 #TODO: fix bounce colour so it stands out more on the screen
