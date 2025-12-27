@@ -16,6 +16,7 @@ class Player(Object):
         self.__images = [[],[],[]]
         self.__won = False
         self.__teleporting = [False,None]
+        self.__reset = False
 
         for i in range(1,5):
             current = pygame.image.load("assets/R"+str(i)+".png")
@@ -53,6 +54,12 @@ class Player(Object):
     
     def getWon(self):
         return self.__won
+    
+    def getReset(self):
+        return self.__reset
+    
+    def setReset(self, val):
+        self.__reset = val
 
     def setWon(self, val):
         self.__won = val

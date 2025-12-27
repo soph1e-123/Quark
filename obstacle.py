@@ -8,3 +8,4 @@ class Spike(Object):
         collision = super().collide(player)
         if collision:
             player.respawn()
+            player.setReset(True)

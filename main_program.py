@@ -110,6 +110,7 @@ def tutorial(window, screen_size):
 #initialise for the entire game
 
 
+
 pygame.init()
 pygame.font.init()
 clock = pygame.time.Clock()
@@ -117,7 +118,8 @@ running = True
 
 info = pygame.display.Info()
 
-screen_size = (info.current_h*1.6, info.current_h*0.8)
+width = info.current_h*1.6
+screen_size = (width, width*0.5)
 
 panel_size = (screen_size[0], screen_size[1]/2)
 window = pygame.display.set_mode(screen_size, pygame.NOFRAME)
@@ -125,6 +127,10 @@ window = pygame.display.set_mode(screen_size, pygame.NOFRAME)
 
 BACKGROUND = pygame.image.load("assets/background.png")
 BACKGROUND = pygame.transform.scale(BACKGROUND, panel_size)
+
+end_screen = pygame.image.load("assets/end.png")
+end_screen = pygame.transform.scale(end_screen, screen_size)
+
 FONT = pygame.font.SysFont("verdana", int(screen_size[0]/20), bold=True)
 
 current_panel = 0
@@ -136,74 +142,94 @@ for i in range(0,6):
     screen = pygame.transform.scale(screen, screen_size)
     tutorial_screens.append(screen)
 
-#--------------
+    #--------------
 
-#run this for each new level
+    #run this for each new level
 
-#level_panels = [[panel1, copy(levels[0])], [panel2, copy(levels[0])]]
-
-setups = [setup_level14, setup_level9, setup_level1, setup_level2, setup_level3, setup_level4, setup_level5, setup_level6, setup_level7]
-
-current_panel = 0
-level = setups[0](screen_size, panel_size, BACKGROUND)
-level.make_copy()
-level_index = 0
-
-win_frame = 0
-
-running = start_screen(window, screen_size)
-
-#if running:
-    #running = tutorial(window, screen_size)
-
-won = False
-
-while running:
-    clock.tick(50)
-    if not won:
-        current_panel, level = switch_panels(current_panel, level)
-    player = level.getPlayer(current_panel)
-    player.animate()
-
-    if not won:
-        move_player(player)
-        level.checkCollisions(current_panel)
-
-        if level.allPressed():
-            level.getDoor().open()
-        
-        level.display(window, screen_size)
-        display_level_num(window, level_index)
-
-    if player.getWon():
-        won = True
-        player.animate()
-        win_frame += 1
-        next_level_text(window, screen_size)
+    #level_panels = [[panel1, copy(levels[0])], [panel2, copy(levels[0])]]
+def main():
     
-    if win_frame > 100:
-        win_frame = 0
-        won = False
-        level.merge()
-        level_index += 1
-        current_panel = 0
-        if level_index < len(setups):
-            level = setups[level_index](screen_size, panel_size, BACKGROUND)
-            level.make_copy()
-        else:
-            running = False
-            #TODO: won whole game
-            print("you win")
+    setups = [setup_level1, setup_level2, setup_level3, setup_level4, setup_level5, setup_level6, setup_level7, setup_level8, setup_level9, setup_level10, setup_level11, setup_level12, setup_level13, setup_level15, setup_level14]
+            
+    current_panel = 0
+    level = setups[0](screen_size, panel_size, BACKGROUND)
+    level.make_copy()
+    level_index = 0
 
-    pygame.display.flip()
+    win_frame = 0
 
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
+    running = start_screen(window, screen_size)
+
+    if running:
+        running = tutorial(window, screen_size)
+
+    won = False
+
+    finished_game = False
+
+    while running and not finished_game:
+        clock.tick(50)
+        if not won:
+            current_panel, level = switch_panels(current_panel, level)
+        player = level.getPlayer(current_panel)
+        player.animate()
+
+        if not won:
+            move_player(player)
+            level.checkCollisions(current_panel)
+
+            if level.allPressed():
+                level.getDoor().open()
+
+            if player.getReset():
+                level = setups[level_index](screen_size, panel_size, BACKGROUND)
+                level.make_copy()
+                current_panel = 0
+            
+            level.display(window, screen_size)
+            display_level_num(window, level_index)
+
+        if player.getWon():
+            won = True
+            player.animate()
+            win_frame += 1
+            next_level_text(window, screen_size)
         
-    if pygame.key.get_pressed()[pygame.K_ESCAPE]:
-        running = False
+        if win_frame > 100:
+            win_frame = 0
+            won = False
+            level.merge()
+            level_index += 1
+            current_panel = 0
+            if level_index < len(setups):
+                level = setups[level_index](screen_size, panel_size, BACKGROUND)
+                level.make_copy()
+            else:
+                finished_game = True
 
+        pygame.display.flip()
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+            
+        if pygame.key.get_pressed()[pygame.K_ESCAPE]:
+            running = False
+
+
+    while running and finished_game:
+        clock.tick(50)
+        window.blit(end_screen, (0,0))
+        pygame.display.flip()
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+
+        if pygame.key.get_pressed()[pygame.K_ESCAPE]:
+            running = False
+
+if __name__ == '__main__':
+    main()
 
 #TODO: quack
 #TODO: sort out imports

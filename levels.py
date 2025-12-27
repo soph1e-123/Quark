@@ -124,14 +124,14 @@ def setup_level4(screen_size, panel_size, BACKGROUND):
     spike2 = Spike(tile_size*17, panel_size[1]-tile_size*1.75, panel_size)
     spike3 = Spike(tile_size, panel_size[1]-tile_size*1.75, panel_size)
 
-    portal1 = Portal(tile_size*14, panel_size[1]-tile_size*3, panel_size)
+    portal1 = Portal(tile_size*12, panel_size[1]-tile_size*3, panel_size)
     portal2 = Portal(tile_size*18.5, panel_size[1]-tile_size*4, panel_size)
     portal1.connect(portal2.getPosition())
     portal2.connect(portal1.getPosition())
 
     door = Door(tile_size*18.5, panel_size[1], panel_size)
     platform1 = Platform(-tile_size*0.5,panel_size[1]-tile_size*0.75, panel_size, 2.5)
-    platform2 = Platform(tile_size*17, panel_size[1]-tile_size*0.75, panel_size, 3)
+    platform2 = Platform(tile_size*17, panel_size[1]-tile_size*0.75, panel_size, 3.5)
 
     current_objects = [spike1, spike2, spike3, portal1, portal2, platform1, platform2]
 
