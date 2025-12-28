@@ -8,6 +8,7 @@ Quark is a platformer puzzle game in which you need to think carefully about wha
 
 - 2D platform game where you can move left, right or jump
 - Includes a variety of obstacles and objects including: boxes, buttons, bounce pads, portals, spikes and more!
+- Discover interesting ways to move around the screen as you play
 - Create alternate timelines in which you can complete different actions
 - Merge to the original timeline, undoing some changes you have made, whilst keeping others
 - Looks impossible to complete? Try resetting to have another go from the start of the level
