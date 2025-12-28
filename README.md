@@ -4,10 +4,10 @@
 
 1. Download:
 - Download zip folder or
-- git clone https://github.com/username/repository.git - replace with actual link
+- git clone https://github.com/soph1e-123/Quark.git
 
 2. Navigate to repo:
-- cd NAME
+- cd Quark
    
 3. Ensure pygame is downloaded:
 - pip install -r requirements.txt
