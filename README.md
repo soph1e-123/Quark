@@ -1,8 +1,8 @@
 ✨🧩🎮🐥 QUARK 🐥🎮🧩✨
 
-In quark you play as a duck exploring space and time, solving puzzles to progress through levels. Through each level, discover different ways to move through space and time to avoid obstacles, reach the buttons, and eventually escape through the door!
+In quark you play as a duck exploring space and time, solving puzzles to progress through levels. Through each level, discover different ways to avoid obstacles, reach the buttons, and eventually escape through the door!
 
-Quark is a platformer puzzle game in which you need to think carefully about what actions to take and in which order, or whether to do them simultaneously, thinking ahead about how to use the objects given in a variety of ways
+Quark is a platformer puzzle game in which you need to think carefully about what actions to take and in which order, or whether to do them simultaneously, thinking ahead about how to use the objects given in a variety of ways.
 
 ✨🧩🎮🐥 FEATURES 🐥🎮🧩✨
 
@@ -44,7 +44,7 @@ Other
 - Download zip folder or
 - git clone https://github.com/soph1e-123/Quark.git
 
-2. Navigate to repo:
+2. Navigate to repo in terminal:
 - cd Quark
    
 3. Ensure pygame is downloaded:
@@ -52,5 +52,6 @@ Other
 
 4. Play game!
 - python main.py
+- or open folder in IDE, select main.py and run
 
 ✨🧩🎮🐥 THANK YOU FOR PLAYING AND HOPE YOU ENJOY! 🐥🎮🧩✨
