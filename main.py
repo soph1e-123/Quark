@@ -1,5 +1,5 @@
 import pygame
-from levels import * # TODO:specify imports
+from levels import *
 
 def move_player(player):
     pressed = pygame.key.get_pressed()
@@ -16,7 +16,7 @@ def move_player(player):
 
     player.move(direction) 
 
-def switch_panels(current_panel, level):
+def switch_panels(current_panel, level, setups, level_index):
     pressed = pygame.key.get_pressed()
 
     if pressed[pygame.K_RETURN]:
@@ -170,7 +170,7 @@ def main():
     while running and not finished_game:
         clock.tick(50)
         if not won:
-            current_panel, level = switch_panels(current_panel, level)
+            current_panel, level = switch_panels(current_panel, level, setups, level_index)
         player = level.getPlayer(current_panel)
         player.animate()
 
@@ -230,10 +230,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-#TODO: quack
-#TODO: sort out imports
-#TODO: optimise in general (improve frame rate etc)
-#TODO: sound effects?
-#TODO: main menu/level select
-#TODO: fix bounce colour so it stands out more on the screen
