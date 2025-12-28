@@ -1,6 +1,6 @@
 ✨🧩🎮🐥 QUARK 🐥🎮🧩✨
 
-In quark you play as a duck exploring space and time, solving puzzles to progress through levels. Through each level, discover different ways to avoid obstacles, reach the buttons, and eventually escape through the door!
+In quark you play as a duck exploring space and time, solving puzzles to progress through levels. In each level, discover different ways to avoid obstacles, reach the buttons, and eventually escape through the door!
 
 Quark is a platformer puzzle game in which you need to think carefully about what actions to take and in which order, or whether to do them simultaneously, thinking ahead about how to use the objects given in a variety of ways.
 
